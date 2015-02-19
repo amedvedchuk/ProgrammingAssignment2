@@ -6,11 +6,11 @@
 ## for accessing and setting underlying data.
 ## 'x' is a matrix to be inverted
 ## Return list of functions:
- # get() - returns original matrix
- # set(y) - replaces original matrinx with new one;
- #          clears cached value of previous inversion
- # setInverse(inverted) - saves inverted matrix to cache
- # getInverse() - returns inverted matrix from cache
+# get() - returns original matrix
+# set(y) - replaces original matrinx with new one;
+#          clears cached value of previous inversion
+# setInverse(inverted) - saves inverted matrix to cache
+# getInverse() - returns inverted matrix from cache
 
 makeCacheMatrix <- function(x = matrix()) {
     
@@ -36,13 +36,13 @@ makeCacheMatrix <- function(x = matrix()) {
 ## Return a matrix that is the inverse of 'x'
 
 cacheSolve <- function(x, ...) {
-    m <- x$getInverse()
-    if(!is.null(m)) {
+    solvedMatrix <- x$getInverse()
+    if(!is.null(solvedMatrix)) {
         message("getting cached data")
-        return(m)
+        return(solvedMatrix)
     }
-    data <- x$get()
-    m <- solve(data, ...)
-    x$setInverse(m)
-    m
+    originalMatrix <- x$get()
+    solvedMatrix <- solve(originalMatrix, ...)
+    x$setInverse(solvedMatrix)
+    solvedMatrix
 }
